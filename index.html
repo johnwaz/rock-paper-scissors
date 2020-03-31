@@ -13,31 +13,45 @@
             return computerChoice[Math.floor(Math.random() * computerChoice.length)];
         }
 
-        
-
         function playRound(playerSelection, computerSelection) {           
             if (playerSelection == 'Rock' && computerSelection == 'Rock' || playerSelection == 'Paper' && computerSelection == 'Paper' || playerSelection == 'Scissors' && computerSelection == 'Scissors') {
                 return 'It is a tie!';
             } else if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+                userScore++;
                 return 'You Win! Rock beats Scissors!';
             } else if (playerSelection == 'Rock' && computerSelection == 'Paper') {
+                computerScore++;
                 return 'You Lose! Paper beats Rock!';
             } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+                userScore++;
                 return 'You Win! Paper beats Rock!';
             } else if (playerSelection == 'Paper' && computerSelection == 'Scissors') {
+                computerScore++;
                 return 'You Lose! Scissors beats Paper!';
             } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+                userScore++;
                 return 'You Win! Scissors beats Paper';
             } else if (playerSelection == 'Scissors' && computerSelection == 'Rock') {
+                computerScore++;
                 return 'You Lose! Rock beats Scissors';
             }
         }
 
-        const playerSelection = prompt('Are you feeling lucky?');
-        const computerSelection = computerPlay();
+        let userScore = parseInt(0);
+        let computerScore = parseInt(0);
+        
+        function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
 
-        console.log(playRound(playerSelection, computerSelection));
+        for (let i = 0; i < 5; i++) {
+            const playerSelection = capitalize(prompt('Are you feeling lucky?'));
+            const computerSelection = computerPlay();
 
+            console.log(playRound(playerSelection, computerSelection));
+            console.log('Your score = ' + userScore);
+            console.log('Computer score = ' + computerScore);
+        }
     </script>
 </body>
 </html>
